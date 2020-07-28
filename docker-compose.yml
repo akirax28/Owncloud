@@ -34,13 +34,13 @@ services:
       - OWNCLOUD_REDIS_HOST=redis
     configs:
       - source: defaults.php
-        target: /var/www/owncloud/lib/private/legacy
+        target: /var/www/owncloud/lib/private/legacy/defaults.php
       - source: header.css
-        target: /var/www/owncloud/core/css
+        target: /var/www/owncloud/core/css/header.css
       - source: background.jpg
-        target: /var/www/owncloud/core/img
+        target: /var/www/owncloud/core/img/background.jpg
       - source: logo2.png
-        target: /var/www/owncloud/core/img
+        target: /var/www/owncloud/core/img/logo2.png
     volumes:
       - owncloud:/mnt/data
       - www:/var/www/html/core
