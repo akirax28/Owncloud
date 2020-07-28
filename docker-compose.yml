@@ -35,12 +35,20 @@ services:
     configs:
       - source: defaults.php
         target: /var/www/owncloud/lib/private/legacy/defaults.php
+        uid: '33'
+        gid: '0'
       - source: header.css
         target: /var/www/owncloud/core/css/header.css
+        uid: '33'
+        gid: '0'
       - source: background.jpg
         target: /var/www/owncloud/core/img/background.jpg
+        uid: '33'
+        gid: '0'
       - source: logo2.png
         target: /var/www/owncloud/core/img/logo2.png
+        uid: '33'
+        gid: '0'
     volumes:
       - owncloud:/mnt/data
       - www:/var/www/html/core
