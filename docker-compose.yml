@@ -11,10 +11,10 @@ services:
       - backups:/backups
     deploy:
       resources:
-        constraints:
-          limits:
-            memory: 512M
-            cpus: '2.0'
+        limits:
+          memory: 512M
+          cpus: '2.0'
+
   owncloud:
     depends_on: 
       - postgres
@@ -44,10 +44,9 @@ services:
       - 8097:8080
     deploy:
       resources:
-        constraints:
-          limits:
-            memory: 512M
-            cpus: '2.0'
+        limits:
+          memory: 512M
+          cpus: '2.0'
 
   redis:
     image: redis:alpine3.12
@@ -57,10 +56,9 @@ services:
       - redis:/data/owncloud/redis
     deploy:
       resources:
-        constraints:
-          limits:
-            memory: 512M
-            cpus: '2.0'
+        limits:
+          memory: 512M
+          cpus: '2.0'
 
   pgbackups:
     image: prodrigestivill/postgres-backup-local
@@ -82,10 +80,9 @@ services:
       - HEALTHCHECK_PORT=80
     deploy:
       resources:
-        constraints:
-          limits:
-            memory: 128M
-            cpus: '1.0'
+        limits:
+          memory: 512M
+          cpus: '2.0'
 
 configs:
   defaults.php:
