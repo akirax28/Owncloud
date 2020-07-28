@@ -37,11 +37,15 @@ services:
         target: /var/www/owncloud/lib/private/legacy
       - source: header.css
         target: /var/www/owncloud/core/css
+      - source: background.jpg
+        target: /var/www/owncloud/core/img
+      - source: logo2.png
+        target: /var/www/owncloud/core/img
     volumes:
       - owncloud:/mnt/data
       - www:/var/www/html/core
     ports:
-      - 8097:8080
+      - 8077:8080
     deploy:
       resources:
         limits:
@@ -89,6 +93,10 @@ configs:
     file: ./config/defaults.php
   header.css: 
     file: ./config/header.css
+  background.jpg:
+    file: ./img/background.jpg
+  logo2.png:
+    file: ./img/logo2.png
 
 volumes:
   postgres:
