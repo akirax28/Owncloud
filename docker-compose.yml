@@ -32,6 +32,11 @@ services:
       - OWNCLOUD_MYSQL_UTF8MB4=true
       - OWNCLOUD_REDIS_ENABLED=true
       - OWNCLOUD_REDIS_HOST=redis
+    configs:
+      - source: defaults.php
+        target: /var/www/owncloud/lib/private/legacy
+      - source: header.php
+        target: /var/www/owncloud/core/css
     volumes:
       - owncloud:/mnt/data
       - www:/var/www/html/core
@@ -81,6 +86,12 @@ services:
           limits:
             memory: 128M
             cpus: 1.0
+
+configs:
+  defaults.php:
+    file: ./config/defaults.php
+  header.css: 
+    file: ./config/header.css
 
 volumes:
   postgres:
