@@ -1,4 +1,4 @@
-version: '3.8'
+version: '3.7'
 services:
   postgres:
     image: postgres:12.3-alpine
@@ -10,10 +10,11 @@ services:
       - postgres:/var/lib/postgresql/data
       - backups:/backups
     deploy:
-      placement:
+      resources:
         constraints:
-          - node.labels.tipo == teste # Conteiner sobe apenas nos nós com esse label
-
+          limits:
+            memory: 512M
+            cpus: 2.0
   owncloud:
     depends_on: 
       - postgres
@@ -33,12 +34,15 @@ services:
       - OWNCLOUD_REDIS_HOST=redis
     volumes:
       - owncloud:/mnt/data
+      - www:/var/www/html/core
     ports:
       - 8097:8080
     deploy:
-      placement:
+      resources:
         constraints:
-          - node.labels.tipo == teste # Conteiner sobe apenas nos nós com esse label
+          limits:
+            memory: 512M
+            cpus: 2.0
 
   redis:
     image: redis:alpine3.12
@@ -47,9 +51,11 @@ services:
     volumes:
       - redis:/data/owncloud/redis
     deploy:
-      placement:
+      resources:
         constraints:
-          - node.labels.tipo == teste # Conteiner sobe apenas nos nós com esse label
+          limits:
+            memory: 512M
+            cpus: 2.0
 
   pgbackups:
     image: prodrigestivill/postgres-backup-local
@@ -70,9 +76,11 @@ services:
       - BACKUP_KEEP_MONTHS=6
       - HEALTHCHECK_PORT=80
     deploy:
-      placement:
+      resources:
         constraints:
-          - node.labels.tipo == teste # Conteiner sobe apenas nos nós com esse label
+          limits:
+            memory: 128M
+            cpus: 1.0
 
 volumes:
   postgres:
@@ -90,6 +98,11 @@ volumes:
       o: bind
       type: none
       device: /data/owncloud/owncloud
+  www:
+    driver_opts:
+      o: bind
+      type: none
+      device: /data/owncloud/www
   redis:
     driver_opts:
       o: bind
