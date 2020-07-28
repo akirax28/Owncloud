@@ -35,7 +35,7 @@ services:
     configs:
       - source: defaults.php
         target: /var/www/owncloud/lib/private/legacy
-      - source: header.php
+      - source: header.css
         target: /var/www/owncloud/core/css
     volumes:
       - owncloud:/mnt/data
